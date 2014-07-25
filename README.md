@@ -1,4 +1,4 @@
-vim_configuration
+Vim Configuration
 =================
 
 My personal vim configuration files
