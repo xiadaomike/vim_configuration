@@ -1,11 +1,15 @@
+"let loaded_matchparen=1
+"set noballooneval
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set shell=/bin/bash
+set showtabline=1
 " Sets how many lines of history VIM has to remember
 set history=800
 
 " Sets the status line with Plugin
-set laststatus=2
+"set laststatus=2
 set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',
@@ -109,11 +113,13 @@ set foldcolumn=0
 syntax on 
 
 set t_Co=256
+"colorscheme mayansmoke
 colorscheme wombat
+"colorscheme jellybeans
 
 let g:jellybeans_use_lowcolor_black = 0
 
-set background=dark
+"set background=dark
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -241,33 +247,31 @@ set viminfo^=%
 Bundle 'gmarik/vundle'
 Bundle 'rizzatti/funcoo.vim'
 " Dash
-Bundle 'rizzatti/dash.vim'
-Bundle 'godlygeek/csapprox'
+"Bundle 'rizzatti/dash.vim'
+"Bundle 'godlygeek/csapprox'
 " Colorscheme
-Bundle 'nanotech/jellybeans.vim'
+"Bundle 'nanotech/jellybeans.vim'
 
-Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/nerdtree'
+"map <C-n> :NERDTreeToggle<CR>
+
+Bundle 'tpope/vim-fugitive'
 Bundle 'kien/ctrlp.vim'
-
-let g:ycm_filetype_blacklist = {
-      \ 'tagbar' : 1,
-      \ 'qf' : 1,
-      \ 'notes' : 1,
-      \ 'markdown' : 1,
-      \ 'unite' : 1,
-      \ 'text' : 1,
-      \ 'tex' : 1,
-      \ 'vimwiki' : 1,
-      \}
-" Beautiful Statusline Tool
-Bundle 'itchyny/lightline.vim'
-"vim-latex suite
 Bundle 'jcf/vim-latex'
 let g:tex_flavor='latex'
 let g:Tex_TreatMacViewerAsUNIX = 1
 let g:Tex_ExecuteUNIXViewerInForeground = 1
 let g:Tex_ViewRule_ps = 'open -a Preview'
 let g:Tex_ViewRule_pdf = 'open -a Preview'
+
+" Beautiful Statusline Tool
+Bundle 'itchyny/lightline.vim'
+
+Bundle 'rking/ag.vim'
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " Plugin - Dash Configuration
 " Searches for the |word| under the cursor in Dash. 
@@ -278,9 +282,6 @@ let g:dash_map = {
         \ 'python' : 'python3'
         \ }
 
-map <C-n> :NERDTreeToggle<CR>
-
 nmap <silent> <C-O> :cn<CR>
 nmap <silent> <C-B> :cp<CR>
 nmap <silent><Leader><C-]> <C-w><C-]><C-w>T
-inoremap jj <ESC>
