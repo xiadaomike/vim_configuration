@@ -29,8 +29,8 @@ let g:lightline = {
       \   'fugitive': 'LightLineFugitive',
       \   'filename': 'LightLineFilename',
       \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }       
 
 function! MyTabName(n) abort
@@ -286,27 +286,21 @@ autocmd BufReadPost *
 set viminfo^=%
 
 " Vundle
- set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
+ set rtp+=~/.vim/bundle/Vundle.vim
+ call vundle#begin()
 
 " let Vundle manage Bundles
-Bundle 'gmarik/vundle'
-Bundle 'rizzatti/funcoo.vim'
-" Dash
-"Bundle 'rizzatti/dash.vim'
-"Bundle 'godlygeek/csapprox'
-" Colorscheme
-"Bundle 'nanotech/jellybeans.vim'
+Plugin 'gmarik/vundle'
+Plugin 'rizzatti/funcoo.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
+Plugin 'jcf/vim-latex'
+" Beautiful Statusline Tool
+Plugin 'itchyny/lightline.vim'
+Plugin 'rking/ag.vim'
+  call vundle#end()
 
-"Bundle 'scrooloose/nerdtree'
-"map <C-n> :NERDTreeToggle<CR>
-
-Bundle 'tpope/vim-fugitive'
-
-Bundle 'kien/ctrlp.vim'
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-
-Bundle 'jcf/vim-latex'
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_TreatMacViewerAsUNIX = 1
@@ -314,6 +308,7 @@ let g:Tex_ExecuteUNIXViewerInForeground = 1
 let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 --interaction=nonstopmode $*' 
 let g:Tex_ViewRule_ps = 'open -a Preview'
 let g:Tex_ViewRule_pdf = 'open -a Skim'
+
 " Activate skim
 map ,v :w<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r <C-r>=line('.')<CR> %<.pdf %<CR><CR>
 map ,p :w<CR>:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p <CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r <C-r>=line('.')<CR> %<.pdf %<CR><CR>
@@ -322,10 +317,6 @@ map ,m :w<CR>:silent !make <CR>:silent !/Applications/Skim.app/Contents/SharedSu
 map ,r :w<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r <C-r>=line('.')<CR> %<.pdf %<CR>:silent !osascript -e "tell application \"MacVim\" to activate" <CR><CR>
 map ,t :w<CR>:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p <CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r <C-r>=line('.')<CR> %<.pdf %<CR>:silent !osascript -e "tell application \"MacVim\" to activate" <CR><CR>
 
-" Beautiful Statusline Tool
-Bundle 'itchyny/lightline.vim'
-
-Bundle 'rking/ag.vim'
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
